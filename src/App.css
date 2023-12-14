@@ -1,38 +1,61 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
+.app {
+  text-align: left;
   background-color: #282c34;
-  min-height: 100vh;
+  max-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 16px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.selector-container {
+  display: flex;
+  flex-direction: row;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (orientation: portrait) {
+  .selector-container {
+    flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
-  }
+}
+
+/* Time Selector */
+
+.time-selector-container {}
+
+.time-selector-area {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.time-selector-title {
+  font-size: 20px;
+}
+
+.time-selector-arrow {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Timer */
+
+.timer-container {}
+
+.timer-title-break {}
+
+.timer-title-session {}
+
+.timer-value-break {}
+
+.timer-value-session {}
+
+/* Time Controls */
+
+.time-controls-container {
+  display: flex;
+  flex-direction: row;
 }
