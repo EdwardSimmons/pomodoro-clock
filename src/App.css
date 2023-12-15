@@ -1,6 +1,15 @@
+:root {
+  --blue-1: #16697A;
+  --blue-2: #489FB5;
+  --blue-3: #82C0CC;
+  --off-white: #EDE7E3;
+  --orange-peel: #FFA62B;
+  user-select: none;
+}
+
 .app {
   text-align: left;
-  background-color: #282c34;
+  background-color: var(--blue-1);
   max-height: 100vh;
   height: 100vh;
   display: flex;
@@ -8,12 +17,20 @@
   align-items: center;
   justify-content: center;
   font-size: 16px;
-  color: white;
+  color: var(--off-white);
+  padding: 1rem;
+}
+
+.app-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
 }
 
 .selector-container {
   display: flex;
   flex-direction: row;
+  width: 60vw;
 }
 
 @media (orientation: portrait) {
@@ -24,38 +41,106 @@
 
 /* Time Selector */
 
-.time-selector-container {}
+.time-selector-container {
+  background-color: var(--blue-2);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 1rem;
+  box-shadow: 10px 10px 16px -3px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--off-white);
+  text-align: center;
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (orientation: portrait) {
+  .time-selector-container {
+    width: 60vw;
+    margin: 1rem 0;
+    padding: 1rem 0;
+  }
+}
 
 .time-selector-area {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  margin-top: 1rem;
 }
 
 .time-selector-title {
-  font-size: 20px;
+  font-size: 1.5rem;
 }
 
 .time-selector-arrow {
-  font-size: 20px;
+  font-size: 1.5rem;
   cursor: pointer;
+}
+
+.time-selector-value {
+  font-size: 1.25rem;
 }
 
 /* Timer */
 
-.timer-container {}
+.timer-container {
+  width: 30vw;
+  background-color: var(--blue-3);
+  border-radius: 1rem;
+  box-shadow: 10px 10px 16px -3px rgba(0, 0, 0, 0.5);
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  justify-content: space-between;
+  border: 1px solid var(--off-white);
+  font-weight: bold;
+}
 
-.timer-title-break {}
+@media (orientation: portrait) {
+  .timer-container {
+    width: 60vw;
+    padding: 1rem 0;
+  }
+}
 
-.timer-title-session {}
+.timer-continer-break {
+  background-color: var(--orange-peel);
+}
 
-.timer-value-break {}
+.timer-title {
+  font-size: 2rem;
+}
 
-.timer-value-session {}
+.timer-value {
+  font-size: 2rem;
+}
 
 /* Time Controls */
 
 .time-controls-container {
   display: flex;
   flex-direction: row;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.time-controls-icon {
+  margin: 0.5rem;
+  font-size: 20px;
+  opacity: 0.5;
+}
+
+.active {
+  opacity: 1;
+}
+
+.disclaimer {
+  position: absolute;
+  bottom: 1rem;
+  font-size: 0.5rem;
+  padding: 0 0.5rem;
 }

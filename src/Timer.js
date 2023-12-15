@@ -5,11 +5,11 @@ import './App.css';
 class Timer extends Component {
     render() {
         return (
-            <div className="timer-container">
-                <div id="timer-label" className={this.props.isBreak ? "timer-title-break" : "timer-title-session"}>
+            <div className={this.props.isBreak ? "timer-container timer-continer-break" : "timer-container"}>
+                <div id="timer-label" className="timer-title">
                     {this.props.title}
                 </div>
-                <div id="time-left" className={this.props.isBreak ? "timer-value-break" : "timer-value-session"}>
+                <div id="time-left" className="timer-value">
                     {this.props.value}
                 </div>
             </div>

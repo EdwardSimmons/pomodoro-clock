@@ -50,7 +50,7 @@ class TimeSelector extends Component {
                         icon={faArrowDown}
                         onClick={this.onClickArrow.bind(this, "down")}
                     />
-                    <div id={id.length}>{this.props.value}</div>
+                    <div id={id.length} class="time-selector-value">{this.props.value}</div>
                     <FontAwesomeIcon
                         id={id.increment}
                         className="time-selector-arrow"

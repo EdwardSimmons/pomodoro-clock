@@ -20,11 +20,11 @@ class TimeControls extends Component {
             <div className="time-controls-container">
                 <div id="start_stop" onClick={this.onClickControl.bind(this, "start_stop")}>
                     <FontAwesomeIcon
-                        className="time-controls-icon"
+                        className={this.props.isPaused ? "time-controls-icon active" : "time-controls-icon"}
                         icon={faPlay}
                     />
                     <FontAwesomeIcon
-                        className="time-controls-icon"
+                        className={this.props.isPaused ? "time-controls-icon" : "time-controls-icon active"}
                         icon={faPause}
                     />
                 </div>

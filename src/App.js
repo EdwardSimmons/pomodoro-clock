@@ -70,10 +70,13 @@ class App extends Component {
   onClickStart() {
     console.log("[ onClickStart ]")
     if (!this.intervalId) {
+      this.setState({
+        isPaused: false,
+      });
+
       this.intervalId = setInterval(() => {
         let seconds = this.state.timeElapsed;
         this.setState({
-          isPaused: false,
           timeElapsed: seconds + 1,
         }, () => this.getTimerValues());
       }, 1000);
@@ -90,11 +93,11 @@ class App extends Component {
   }
 
   onChangeValue(type, newValue) {
-    if (type.toLowerCase() === "break") {
+    if (type.toLowerCase() === "break" && this.state.isPaused) {
       this.setState({
         breakLength: newValue,
       }, () => this.getTimerValues());
-    } else if (type.toLowerCase() === "session") {
+    } else if (type.toLowerCase() === "session" && this.state.isPaused) {
       this.setState({
         sessionLength: newValue,
       }, () => this.getTimerValues());
@@ -109,7 +112,7 @@ class App extends Component {
         .format("mm:ss"),
     };
 
-    if (this.state.sessionLength === 60 && !this.intervalId) {
+    if (this.state.sessionLength === 60 && this.state.isPaused) {
       // Override dayjs 00-59 minute formatting for a 60-minute session.
       timer.value = "60:00";
     }
@@ -150,7 +153,10 @@ class App extends Component {
         </div>
         <Timer title={this.state.timer.title} value={this.state.timer.value} isBreak={this.state.isBreak} />
         <audio id="beep" preload="auto" src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/BeepSound.wav"></audio>
-        <TimeControls onClickControl={this.onClickControl.bind(this)} />
+        <TimeControls onClickControl={this.onClickControl.bind(this)} isPaused={this.state.isPaused} />
+        <div className="disclaimer">
+          I believe I have made a fully functioning pomodoro clock with all the functionality requested by freeCodeCamp. However, it doesn't pass their test suite, much to my annoyance. If you find a flaw in the logic, please let me know.
+        </div>
       </div>
     );
   }
