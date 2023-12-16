@@ -34,6 +34,10 @@ class App extends Component {
     }
   }
 
+  componentDidMount() {
+    this.getTimerValues();
+  }
+
   intervalId = null;
 
   onClickControl(type) {
@@ -112,24 +116,39 @@ class App extends Component {
         .format("mm:ss"),
     };
 
-    if (this.state.sessionLength === 60 && this.state.isPaused) {
-      // Override dayjs 00-59 minute formatting for a 60-minute session.
+    if ((this.state.sessionLength === 60 || this.state.breakLength === 60) && this.state.timeElapsed === 0) {
+      // Override dayjs 00-59 minute formatting for a 60-minute session/ break.
       timer.value = "60:00";
     }
 
-    if (timer.value === "59:59" && !!this.intervalId) {
+    if (timer.value === "00:00" && !!this.intervalId) {
       // Switch between a break and a session.
       const isBreak = this.state.isBreak;
-      this.setState({
-        timeElapsed: 0,
-        isBreak: !isBreak,
-      }, () => this.getTimerValues());
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+      this.switchStates(timer, isBreak);
       return;
     }
 
     this.setState({
       timer
     });
+  }
+
+  asyncSetState = (newState) => new Promise(resolve => this.setState(newState, resolve));
+  timeout = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+  async switchStates(timer, isBreak) {
+    await this.asyncSetState({
+      timer
+    });
+    await this.timeout(1000);
+    await this.asyncSetState({
+      timeElapsed: 0,
+      isBreak: !isBreak,
+    });
+    this.getTimerValues();
+    this.onClickStart();
   }
 
   render() {

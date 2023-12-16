@@ -30,7 +30,7 @@ class TimeControls extends Component {
                 </div>
                 <FontAwesomeIcon
                     id="reset"
-                    className="time-controls-icon"
+                    className="time-controls-icon active"
                     icon={faRotateRight}
                     onClick={this.onClickControl.bind(this, "reset")}
                 />
